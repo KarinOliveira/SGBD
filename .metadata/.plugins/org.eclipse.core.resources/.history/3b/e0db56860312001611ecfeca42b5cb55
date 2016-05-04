@@ -1,0 +1,7 @@
+package interfaces;
+
+public interface ChangeTransactionState {
+	
+	public void changeTransactionState();
+	
+}

@@ -1,0 +1,21 @@
+package controller;
+
+import java.util.ArrayList;
+
+import model.Transaction;
+
+public class TransactionManager {
+	private ArrayList<Transaction> transactions;
+	
+	public TransactionManager() {
+		this.transactions = new ArrayList<>();
+	}
+	
+	public void addNewTransaction(Transaction transaction) {
+		this.transactions.add(transaction);
+	}
+	
+	public void changeTransactionState(Transaction transaction) {
+		
+	}
+}
