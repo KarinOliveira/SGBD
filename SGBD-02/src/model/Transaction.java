@@ -4,9 +4,8 @@ public class Transaction {
 	private String id;
 	private String currentState;
 	
-	public Transaction(String id, String currentState) {
+	public Transaction(String id) {
 		this.id = id;
-		this.currentState = currentState;
 	}
 
 	public String getId() {
@@ -23,5 +22,10 @@ public class Transaction {
 	
 	public void setCurrentState(String currentState) {
 		this.currentState = currentState;
+	}
+	
+	@Override
+	public String toString() {
+		return "Id: " + this.id + "\nCurrent State: " + this.currentState;
 	}
 }

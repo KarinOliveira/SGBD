@@ -1,0 +1,7 @@
+package events;
+
+import interfaces.ChangeTransactionState;
+
+public class TransactionBegin implements ChangeTransactionState {
+
+}

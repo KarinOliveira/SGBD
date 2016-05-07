@@ -1,0 +1,13 @@
+package events;
+
+import enumeration.TransactionStates;
+import interfaces.ChangeTransactionState;
+import model.Transaction;
+
+public class TransactionBegin implements ChangeTransactionState {
+
+	@Override
+	public void changeTransactionState(Transaction transaction) {
+		transaction.setCurrentState(TransactionStates.TRANSACTION_STARTED.stateTitle);
+	}
+}

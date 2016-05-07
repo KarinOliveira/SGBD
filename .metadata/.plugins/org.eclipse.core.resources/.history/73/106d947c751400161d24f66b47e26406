@@ -1,0 +1,19 @@
+package events;
+
+import enumeration.TransactionStates;
+import interfaces.ChangeTransactionState;
+import model.Transaction;
+
+public class Read implements ChangeTransactionState {
+
+	@Override
+	public void changeTransactionState(Transaction transaction) {
+		String transactionCurrentState = transaction.getCurrentState();
+		boolean isFollowClassRule = transactionCurrentState.equals(TransactionStates.TRANSACTION_STARTED.stateTitle) || transactionCurrentState.equals(TransactionStates.ACTIVE.stateTitle);
+		
+		if (isFollowClassRule) {
+			
+		}
+	}
+
+}

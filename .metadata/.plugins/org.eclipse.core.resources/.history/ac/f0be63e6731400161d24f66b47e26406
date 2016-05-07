@@ -1,0 +1,8 @@
+package enumeration;
+
+public enum TransactionStates {
+	
+	TRANSACTION_STARTED, ACTIVE, PROCESS_CANCELLATION, PROCESS_EFFECTIVE, EFFECTIVE, TRANSACTION_FINISHED
+	
+	
+}

@@ -1,0 +1,15 @@
+package events;
+
+import interfaces.ChangeTransactionState;
+import model.Transaction;
+
+public class Read implements ChangeTransactionState {
+
+	@Override
+	public void changeTransactionState(Transaction transaction) {
+		if (transaction.getCurrentState().equals("Transaction Started")) {
+			
+		}
+	}
+
+}

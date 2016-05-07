@@ -1,0 +1,16 @@
+package model;
+
+import interfaces.ChangeTransactionState;
+
+public class TransactionStarted extends Transaction implements ChangeTransactionState {
+
+	public TransactionStarted(String id, String currentState) {
+		super(id, currentState);
+	}
+
+	@Override
+	public void changeTransactionState() {
+		
+	}
+
+}

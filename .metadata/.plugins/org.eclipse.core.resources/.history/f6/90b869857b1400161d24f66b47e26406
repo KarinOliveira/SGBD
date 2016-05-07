@@ -1,0 +1,34 @@
+package controller;
+
+import java.util.ArrayList;
+
+import javax.swing.event.ChangeListener;
+
+import enumeration.TransactionStates;
+import model.Transaction;
+
+public class TransactionManager {
+	private ArrayList<Transaction> transactions;
+	
+	public TransactionManager() {
+		this.transactions = new ArrayList<>();
+	}
+	
+	public void createTransaction(String id) {
+		Transaction newTransaction = new Transaction(id);
+		newTransaction.setCurrentState(TransactionStates.TRANSACTION_STARTED.stateTitle);
+		
+		addNewTransaction(newTransaction);
+	}
+	
+	public void showTransactions() {
+		for (Transaction transaction : transactions) {
+			System.out.println(transaction);
+		}
+	}
+	
+	private void addNewTransaction(Transaction transaction) {
+		transaction.setCurrentState("");
+		this.transactions.add(transaction);
+	}
+}

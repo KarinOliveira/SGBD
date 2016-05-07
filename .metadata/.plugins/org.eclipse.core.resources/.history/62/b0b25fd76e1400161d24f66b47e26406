@@ -1,0 +1,13 @@
+package model;
+
+import abstracts.ChangeState;
+import interfaces.ChangeTransactionState;
+
+public class TransactionStarted extends Transaction implements ChangeTransactionState{
+
+	@Override
+	public void changeTransactionState() {
+		
+	}
+
+}
