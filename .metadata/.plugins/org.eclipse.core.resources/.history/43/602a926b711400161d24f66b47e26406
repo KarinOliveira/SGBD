@@ -1,7 +1,0 @@
-package Application;
-
-public class StartTransactions {
-	public static void main(String[] args) {
-		Transaction t1 = new Transaction("T1");
-	}
-}

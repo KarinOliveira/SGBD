@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="interfaces.ChangeState"/>
+<fullyQualifiedTypeName name="java.awt.Event"/>
+<fullyQualifiedTypeName name="model.Event"/>
+<fullyQualifiedTypeName name="events.BeginEvent"/>
+<fullyQualifiedTypeName name="events.ReadEvent"/>
+<fullyQualifiedTypeName name="events.WriteEvent"/>
+<fullyQualifiedTypeName name="events.TerminateEvent"/>
+<fullyQualifiedTypeName name="events.RollbackEvent"/>
+<fullyQualifiedTypeName name="events.CommitEvent"/>
+<fullyQualifiedTypeName name="events.FinishEvent"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="exceptions.TransactionAlreadyExistsException"/>
+<fullyQualifiedTypeName name="exceptions.TransactionNotFoundException"/>
 </qualifiedTypeNameHistroy>

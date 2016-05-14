@@ -1,0 +1,32 @@
+package application;
+
+import java.util.Scanner;
+
+import controller.TransactionManager;
+import view.MainMenu;
+
+public class StartApplication {
+	
+	public static void main(String[] args) {
+		
+		TransactionManager mTransactionManager = new TransactionManager();
+		MainMenu mMenu = new MainMenu();
+		
+		Scanner mReader = new Scanner(System.in);
+
+		int menuOption = 0;
+		int eventOption = 0;
+		
+		while (menuOption != 3) {
+			mMenu.showMenuOptions();
+			menuOption = mReader.nextInt();
+			
+			switch (menuOption) {
+				case 1: System.out.println("Type the ID of the Transaction: ");
+						String transactionId = mReader.nextLine();
+						mTransactionManager.createTransaction(transactionId);
+						break;
+			}
+		}
+	}
+}

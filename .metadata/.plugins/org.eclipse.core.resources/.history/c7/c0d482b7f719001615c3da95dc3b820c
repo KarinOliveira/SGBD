@@ -1,0 +1,23 @@
+package application;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+import controller.TransactionManager;
+import enums.TransactionEvents;
+import exceptions.TransactionAlreadyExistsException;
+import exceptions.TransactionNotFoundException;
+import view.Menu;
+
+public class StartApplication {
+	
+	private static Scanner mReader;
+	private static Menu mMenu;
+	
+	public static void main(String[] args) {
+		TransactionManager mTransactionManager = new TransactionManager();
+		
+		mReader = new Scanner(System.in);
+		mMenu.
+	}
+}

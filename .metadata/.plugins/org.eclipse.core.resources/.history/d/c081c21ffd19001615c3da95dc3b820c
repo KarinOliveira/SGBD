@@ -1,0 +1,108 @@
+package controller;
+
+import java.util.ArrayList;
+
+import javax.swing.event.ChangeListener;
+
+import enums.TransactionEvents;
+import enums.TransactionStates;
+import events.ReadEvent;
+import events.RollbackEvent;
+import events.TerminateEvent;
+import events.WriteEvent;
+import exceptions.TransactionAlreadyExistsException;
+import exceptions.TransactionNotFoundException;
+import events.BeginEvent;
+import events.CommitEvent;
+import events.FinishEvent;
+import model.Event;
+import model.Transaction;
+
+public class TransactionManager {
+	
+	private ArrayList<Transaction> transactions;
+	private ArrayList<Event> events;
+	
+	private BeginEvent mBeginEvent;
+	private ReadEvent mReadEvent;
+	private WriteEvent mWriteEvent;
+	private TerminateEvent mTerminateEvent;
+	private RollbackEvent mRollbackEvent;
+	private CommitEvent mCommitEvent;
+	private FinishEvent mFinishEvent;
+	
+	public TransactionManager() {
+		this.mBeginEvent = new BeginEvent(TransactionEvents.TRANSACTION_BEGIN.eventTitle);
+		this.mReadEvent = new ReadEvent(TransactionEvents.READ.eventTitle);
+		this.mWriteEvent = new WriteEvent(TransactionEvents.WRITE.eventTitle);
+		this.mTerminateEvent = new TerminateEvent(TransactionEvents.TRANSACTION_TERMINATE.eventTitle);
+		this.mRollbackEvent = new RollbackEvent(TransactionEvents.TRANSACTION_ROLLBACK.eventTitle);
+		this.mCommitEvent = new CommitEvent(TransactionEvents.TRANSACTION_COMMIT.eventTitle);
+		this.mFinishEvent = new FinishEvent(TransactionEvents.TRANSACTION_FINISH.eventTitle);
+		
+		this.transactions = new ArrayList<>();
+		this.events = new ArrayList<>();
+		
+		initStates();
+	}
+	
+	public void createTransaction(String id) throws TransactionAlreadyExistsException, TransactionNotFoundException {
+		
+		if (searchTransaction(id) != null) {
+			throw new TransactionAlreadyExistsException(id);
+		}
+	
+		Transaction newTransaction = new Transaction(id);
+		addNewTransaction(newTransaction);
+		
+		System.out.println("Transaction Created with Success!\n");
+		
+		changeTransactionState(id, 0);				
+	}
+	
+	public void changeTransactionState(String transactionId, int newStateIndex) throws TransactionNotFoundException {	
+		Transaction mTransaction = searchTransaction(transactionId);
+
+		if (mTransaction == null) {
+			throw new TransactionNotFoundException(transactionId);
+		}
+		
+		Event newEvent = events.get(newStateIndex);
+		newEvent.changeState(mTransaction);		
+	}
+	
+	private Transaction searchTransaction(String transactionId) {		
+		for (Transaction transaction : transactions) {
+			if (transaction.getId().equals(transactionId)) {
+				return transaction;
+			}
+		}
+		
+		return null;
+	}
+	
+	public void showTransactions() {
+		
+		if (transactions.size() == 0) {
+			System.out.println("There is no Transaction yet!");
+		}
+		
+		for (Transaction transaction : transactions) {
+			System.out.println(transaction);
+		}
+	}
+	
+	private void initStates() {
+		events.add(mBeginEvent);
+		events.add(mReadEvent);
+		events.add(mWriteEvent);
+		events.add(mTerminateEvent);
+		events.add(mRollbackEvent);
+		events.add(mCommitEvent);
+		events.add(mFinishEvent);
+	}
+
+	private void addNewTransaction(Transaction transaction) {
+		this.transactions.add(transaction);
+	}
+}

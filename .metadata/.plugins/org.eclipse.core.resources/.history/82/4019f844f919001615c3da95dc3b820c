@@ -1,0 +1,12 @@
+package view;
+
+import enums.TransactionEvents;
+
+public class TransactionMenu {
+
+	public void showMenuOptions() {
+		System.out.println("1 - Create a new Transaction");
+		System.out.println("2 - Change the State of a Transaction");
+	}
+}
+

@@ -1,0 +1,43 @@
+package application;
+
+import controller.TransactionManager;
+import enums.TransactionEvents;
+import exceptions.TransactionAlreadyExistsException;
+import exceptions.TransactionNotFoundException;
+
+public class StartApplication {
+	
+	public static void main(String[] args) {
+		TransactionManager mTransactionManager = new TransactionManager();
+//
+//		try {
+//			mTransactionManager.createTransaction("T1");
+//		} catch (TransactionAlreadyExistsException | TransactionNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//
+//		mTransactionManager.showTransactions();
+//		
+//		try {
+//			mTransactionManager.changeTransactionState("T3", 1);
+//		} catch (TransactionNotFoundException e) {
+//			System.out.println(e.getMessage());
+//		}		
+		
+		eventMenu();
+	}
+	
+	private static void eventMenu() {
+		showEventsOptions();
+		
+	}
+	
+	private static void showEventsOptions() {
+		int i = 1;
+		
+		for (TransactionEvents transactionsEvents : TransactionEvents.values()) {
+			System.out.println(i + " - " + transactionsEvents.eventTitle);
+			i++;
+		}
+	}
+}

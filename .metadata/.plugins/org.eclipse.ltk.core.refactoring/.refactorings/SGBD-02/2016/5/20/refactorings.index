@@ -10,3 +10,6 @@
 1463193129254	Rename type 'WriteTransaction'
 1463193194226	Rename type 'ReadingEvent'
 1463196586290	Rename type 'StartTransactions'
+1463245088728	Delete element
+1463246264798	Rename type 'Menu'
+1463247322263	Rename type 'TransactionMenu'

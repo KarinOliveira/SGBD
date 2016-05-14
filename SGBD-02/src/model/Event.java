@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.StateNotAllowedException;
+
 public abstract class Event {
 	
 	protected String eventTitle;
@@ -12,7 +14,7 @@ public abstract class Event {
 		return eventTitle;
 	}
 	
-	public abstract void changeState(Transaction transaction);
+	public abstract void changeState(Transaction transaction) throws StateNotAllowedException;
 	
 	public abstract boolean isObeyClassRule(String transactionCurrentState);
 }

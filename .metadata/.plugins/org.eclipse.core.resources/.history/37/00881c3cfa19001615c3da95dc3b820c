@@ -1,0 +1,25 @@
+package application;
+
+import java.util.Scanner;
+
+import controller.TransactionManager;
+import view.TransactionMenu;
+
+public class StartApplication {
+	
+	public static void main(String[] args) {
+		
+		TransactionManager mTransactionManager = new TransactionManager();
+		TransactionMenu mMenu = new TransactionMenu();
+		
+		Scanner mReader = new Scanner(System.in);
+
+		int menuOption = 0;
+		int eventOption = 0;
+		
+		while (menuOption != 3) {
+			mMenu.showMenuOptions();
+			menuOption = mReader.nextInt();
+		}
+	}
+}

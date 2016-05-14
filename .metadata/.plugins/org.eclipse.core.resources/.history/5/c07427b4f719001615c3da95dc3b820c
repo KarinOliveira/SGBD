@@ -1,0 +1,23 @@
+package view;
+
+import enums.TransactionEvents;
+
+public class Menu {
+	
+	
+	public void showEventMenu() {
+		showEventsOptions();					
+	}
+	
+	private void showEventsOptions() {
+		int i = 1;
+		
+		for (TransactionEvents transactionsEvents : TransactionEvents.values()) {
+			System.out.println(i + " - " + transactionsEvents.eventTitle);
+			i++;
+		}
+		
+		System.out.println(i + " - ");
+
+	}	
+}

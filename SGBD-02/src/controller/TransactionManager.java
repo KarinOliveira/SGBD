@@ -10,6 +10,7 @@ import events.ReadEvent;
 import events.RollbackEvent;
 import events.TerminateEvent;
 import events.WriteEvent;
+import exceptions.StateNotAllowedException;
 import exceptions.TransactionAlreadyExistsException;
 import exceptions.TransactionNotFoundException;
 import events.BeginEvent;
@@ -55,21 +56,32 @@ public class TransactionManager {
 		Transaction newTransaction = new Transaction(id);
 		addNewTransaction(newTransaction);
 		
-		changeTransactionState(id, 0);				
+		System.out.println("Transaction Created with Success!\n");
+		
+		try {
+			changeTransactionState(id, 0);
+		} catch (StateNotAllowedException e) {
+			e.printStackTrace();
+		}				
 	}
 	
-	public void changeTransactionState(String transactionId, int newStateIndex) throws TransactionNotFoundException {	
+	public void changeTransactionState(String transactionId, int newStateIndex) throws TransactionNotFoundException, StateNotAllowedException {	
 		Transaction mTransaction = searchTransaction(transactionId);
+		
+		if (transactions.size() == 0) {
+			System.out.println("\nThere is no Transaction yet!\n");
+			return;
+		}
 
 		if (mTransaction == null) {
 			throw new TransactionNotFoundException(transactionId);
 		}
 		
 		Event newEvent = events.get(newStateIndex);
-		newEvent.changeState(mTransaction);		
+		newEvent.changeState(mTransaction);	
 	}
 	
-	private Transaction searchTransaction(String transactionId) {		
+	public Transaction searchTransaction(String transactionId) {		
 		for (Transaction transaction : transactions) {
 			if (transaction.getId().equals(transactionId)) {
 				return transaction;
@@ -80,8 +92,13 @@ public class TransactionManager {
 	}
 	
 	public void showTransactions() {
+		
+		if (transactions.size() == 0) {
+			System.out.println("\nThere is no Transaction yet!\n");
+		}
+		
 		for (Transaction transaction : transactions) {
-			System.out.println(transaction);
+			System.out.println("\n" + transaction + "\n");
 		}
 	}
 	

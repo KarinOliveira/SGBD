@@ -1,32 +1,79 @@
 package application;
 
+import java.util.Scanner;
+
 import controller.TransactionManager;
-import enums.TransactionEvents;
+import exceptions.StateNotAllowedException;
 import exceptions.TransactionAlreadyExistsException;
 import exceptions.TransactionNotFoundException;
+import model.Transaction;
+import view.EventsMenu;
+import view.MainMenu;
 
 public class StartApplication {
 	
 	public static void main(String[] args) {
+		
 		TransactionManager mTransactionManager = new TransactionManager();
+		MainMenu mMenu = new MainMenu();
+		
+		Scanner mOptionReader = new Scanner(System.in);
+		Scanner auxReader = new Scanner(System.in);
+		
+		String transactionId;
+		
+		int menuOption = 0;
+		int eventOption = 0;
+		
+		while (menuOption != 4) {
+			mMenu.showMenuOptions();
+			menuOption = mOptionReader.nextInt();
 
-		try {
-			mTransactionManager.createTransaction("T1");
-		} catch (TransactionAlreadyExistsException | TransactionNotFoundException e) {
-			e.printStackTrace();
+			switch (menuOption) {
+				case 1: System.out.println("\nType the ID of the Transaction: ");
+						transactionId = auxReader.nextLine();
+						
+						try {
+							mTransactionManager.createTransaction(transactionId);
+						} catch (TransactionAlreadyExistsException e) {
+							System.out.println("\n" + e.getMessage() + "\n");
+						} catch (TransactionNotFoundException e) {
+							System.out.println("\n" + e.getMessage() + "\n");
+						}
+						
+						break;
+						
+				case 2: System.out.println("\nType the ID of the Transaction that you want to change its State: ");
+						transactionId = auxReader.nextLine();
+						
+						EventsMenu.showEventsOptions();
+						eventOption = mOptionReader.nextInt();
+						
+						try {
+							mTransactionManager.changeTransactionState(transactionId, eventOption - 1);
+							Transaction mTransaction = mTransactionManager.searchTransaction(transactionId);
+							
+							System.out.println("\nState Changed with Success!");
+							System.out.println("The New State of the Transaction " + mTransaction.getId() + " is: " + mTransaction.getCurrentState() + "\n");
+							
+						} catch (TransactionNotFoundException e) {
+							System.out.println("\n" + e.getMessage() + "\n");
+						} catch (StateNotAllowedException e) {
+							System.out.println("\n" + e.getMessage() + "\n");
+						} 
+						
+						break;
+				
+				case 3: mTransactionManager.showTransactions();
+						break;
+				
+				case 4: break;
+						
+				default: System.out.println("\nOption Not Found!\n");
+			}
 		}
-
-		mTransactionManager.showTransactions();
 		
-		try {
-			mTransactionManager.changeTransactionState("T3", 1);
-		} catch (TransactionNotFoundException e) {
-			e.printStackTrace();
-		}		
-
-		
-//		for (TransactionEvents transactionsEvents : TransactionEvents.values()) {
-//			System.out.println(transactionsEvents.eventTitle);
-//		}
+		mOptionReader.close();
+		auxReader.close();
 	}
 }
