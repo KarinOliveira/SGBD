@@ -1,0 +1,25 @@
+package events;
+
+import model.Event;
+import model.Transaction;
+
+public class CommitEvent extends Event {
+
+	protected CommitEvent(String eventTitle) {
+		super(eventTitle);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void changeState(Transaction transaction) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isObeyClassRule(String transactionCurrentState) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

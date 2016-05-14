@@ -1,0 +1,7 @@
+package events;
+
+import model.Event;
+
+public class CommitEvent extends Event {
+
+}

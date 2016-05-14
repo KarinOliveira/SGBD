@@ -1,0 +1,17 @@
+package model;
+
+public class State {
+	private String stateTitle;
+	
+	public State(String stateTitle) {
+		this.stateTitle = stateTitle;
+	}
+	
+	public String getStateTitle() {
+		return stateTitle;
+	}
+	
+	public void setStateTitle(String stateTitle) {
+		this.stateTitle = stateTitle;
+	}
+}

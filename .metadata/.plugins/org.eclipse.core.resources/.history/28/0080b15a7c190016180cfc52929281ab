@@ -1,0 +1,19 @@
+package model;
+
+public abstract class Event {
+	
+	protected String eventTitle;
+	
+	protected Event(String eventTitle) {
+		this.eventTitle = eventTitle;
+	}
+	
+	public String getStateTitle() {
+		return eventTitle;
+	}
+	
+	public abstract void changeState(Transaction transaction);
+	
+	public abstract boolean isObeyClassRule(String transactionCurrentState);
+
+}

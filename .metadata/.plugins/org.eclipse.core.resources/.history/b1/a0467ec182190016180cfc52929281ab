@@ -1,0 +1,31 @@
+package application;
+
+import controller.TransactionManager;
+import enums.TransactionEvents;
+import exceptions.TransactionAlreadyExistsException;
+
+public class StartTransactions {
+	
+	public static void main(String[] args) {
+		TransactionManager mTransactionManager = new TransactionManager();
+
+		try {
+			mTransactionManager.createTransaction("T1");
+		} catch (TransactionAlreadyExistsException e) {
+			e.printStackTrace();
+		}
+		mTransactionManager.showTransactions();
+		
+		mTransactionManager.changeTransactionState("T1", 2);
+		mTransactionManager.showTransactions();
+
+		mTransactionManager.changeTransactionState("T1", 4);
+		mTransactionManager.showTransactions();
+		
+
+		
+//		for (TransactionEvents transactionsEvents : TransactionEvents.values()) {
+//			System.out.println(transactionsEvents.eventTitle);
+//		}
+	}
+}

@@ -1,0 +1,18 @@
+package events;
+
+import model.Event;
+import model.Transaction;
+
+public class FinishEvent extends Event {
+
+	@Override
+	public void changeState(Transaction transaction) {
+		
+	}
+
+	@Override
+	public boolean isObeyClassRule(String transactionCurrentState) {
+		return false;
+	}
+
+}

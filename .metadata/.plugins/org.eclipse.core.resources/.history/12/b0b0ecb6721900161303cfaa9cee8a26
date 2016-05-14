@@ -1,0 +1,10 @@
+package interfaces;
+
+import model.Transaction;
+
+public interface ChangeTransactionState {
+	
+	public void changeState(Transaction transaction);
+	
+	public boolean isObeyClassRule(String transactionCurrentState); 
+}

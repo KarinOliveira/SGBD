@@ -1,0 +1,53 @@
+package model;
+
+import java.util.ArrayList;
+
+import enumeration.TransactionStates;
+
+public class Transaction {
+	private String id;
+	private String currentState;
+	private ArrayList<String> stateHistoric;
+	
+	public Transaction(String id) {
+		this.id = id;
+		this.currentState = TransactionStates.TRANSACTION_STARTED.stateTitle;
+		this.stateHistoric.add(this.currentState);
+		stateHistoric = new ArrayList<>();
+	}
+
+	public String getId() {
+		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public String getCurrentState() {
+		return currentState;
+	}
+	
+	public void setCurrentState(String currentState) {
+		this.currentState = currentState;
+	}
+	
+	@Override
+	public String toString() {
+		return "Id: " + this.id + "\nCurrent State: " + this.currentState;
+	}
+	
+	public void showHistoric() {
+		for (int i = 0; i < stateHistoric.size(); i++) {
+			System.out.print(stateHistoric.get(i));
+			
+			if (i < stateHistoric.size() - 1) {
+				System.out.print(" -> ");
+			}
+		}
+	}
+	
+	public void addStateHistoric(String newState) {
+		this.stateHistoric.add(newState);
+	}
+}

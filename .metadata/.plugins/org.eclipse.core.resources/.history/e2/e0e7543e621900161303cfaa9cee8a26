@@ -1,0 +1,8 @@
+package model;
+
+public abstract class State {
+	
+	public abstract void changeState(Transaction transaction);
+	
+	public abstract boolean isObeyClassRule(String transactionCurrentState);
+}

@@ -1,0 +1,12 @@
+1463149866090	Rename type 'Read'
+1463187314403	Rename package 'enumeration'
+1463187362663	Rename type 'State'
+1463189116740	Delete element
+1463192770644	Rename type 'ReadTransaction'
+1463192949695	Rename type 'EventReading'
+1463193044849	Rename type 'RollbackTransaction'
+1463193059460	Rename type 'TerminateTransaction'
+1463193100657	Rename type 'TransactionBegin'
+1463193129254	Rename type 'WriteTransaction'
+1463193194226	Rename type 'ReadingEvent'
+1463196586290	Rename type 'StartTransactions'

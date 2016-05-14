@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Transaction {
 	private String id;
 	private String currentState;

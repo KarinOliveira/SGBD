@@ -1,0 +1,96 @@
+package controller;
+
+import java.util.ArrayList;
+
+import javax.swing.event.ChangeListener;
+
+import enums.TransactionEvents;
+import enums.TransactionStates;
+import events.ReadTransaction;
+import events.TransactionBegin;
+import model.Event;
+import model.Transaction;
+
+public class TransactionManager {
+	
+	private TransactionBegin transactionBegin;
+	private ReadTransaction readTransaction;
+	
+	private ArrayList<Transaction> transactions;
+	private ArrayList<Event> events;
+		
+	public TransactionManager() {
+		this.transactionBegin = new TransactionBegin(TransactionEvents.TRANSACTION_BEGIN.eventTitle);
+		this.readTransaction = new ReadTransaction(TransactionEvents.READ.eventTitle);
+		
+		this.transactions = new ArrayList<>();
+		this.events = new ArrayList<>();
+		
+		initStates();
+	}
+	
+	public void createTransaction(String id) {
+		Transaction newTransaction = new Transaction(id);
+	
+		newTransaction.setCurrentState(TransactionStates.TRANSACTION_STARTED.stateTitle);
+					
+		addNewTransaction(newTransaction);
+	}
+	
+	//CRIAR EXCEÇÕES
+	public void changeTransactionState(String transactionId) {	
+		Transaction mTransaction;
+		Event currentState;
+		int indexLastEvent;
+		
+		mTransaction = searchTransaction(transactionId);
+		
+		/* if (mTransaction == null) throw TransactioNotFound */
+		// Which state the transaction must to change now?
+		if (mTransaction != null) {
+			indexLastEvent = getLastTransactionEvent(mTransaction.getCurrentState()); 
+			
+			currentState = events.get(indexLastEvent);
+			currentState.changeState(mTransaction);
+		}
+	}
+	
+	private int getLastTransactionEvent(String transactionCurrentState) {
+		int index;
+		
+		for (index = 0; index < events.size(); index++) {
+			Event event = events.get(index);
+			System.out.println(event.getStateTitle());
+			if (transactionCurrentState.equalsIgnoreCase(event.getStateTitle())) {
+				return index;
+			}
+		}
+		
+		return 0;
+	}
+	
+	private Transaction searchTransaction(String transactionId) {		
+		for (Transaction transaction : transactions) {
+			if (transaction.getId().equals(transactionId)) {
+				return transaction;
+			}
+		}
+		
+		return null;
+	}
+	
+	public void showTransactions() {
+		for (Transaction transaction : transactions) {
+			System.out.println(transaction);
+		}
+	}
+	
+	private void initStates() {
+		events.add(transactionBegin);
+		events.add(readTransaction);
+	}
+
+	private void addNewTransaction(Transaction transaction) {
+		this.transactions.add(transaction);
+	}
+}

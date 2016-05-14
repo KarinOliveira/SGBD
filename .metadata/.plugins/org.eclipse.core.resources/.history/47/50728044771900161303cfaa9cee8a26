@@ -1,0 +1,24 @@
+package events;
+
+import model.Event;
+import model.Transaction;
+
+public class RollbackTransaction extends Event {
+
+	public RollbackTransaction(String eventTitle) {
+		this.eventTitle = eventTitle;
+	}
+	
+	@Override
+	public void changeState(Transaction transaction) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isObeyClassRule(String transactionCurrentState) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

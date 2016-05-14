@@ -1,0 +1,11 @@
+package events;
+
+import model.Event;
+
+public class TerminateTransaction  extends Event {
+	
+	public ReadTransaction(String eventTitle) {
+		this.eventTitle = eventTitle;
+	}
+
+}

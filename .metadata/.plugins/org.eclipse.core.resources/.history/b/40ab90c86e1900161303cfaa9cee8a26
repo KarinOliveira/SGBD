@@ -1,0 +1,23 @@
+package events;
+
+import enums.TransactionStates;
+import interfaces.ChangeTransactionState;
+import model.Event;
+import model.Transaction;
+
+public class TransactionBegin extends Event {
+	
+	public TransactionBegin(String stateTitle) {
+		this.stateTitle = stateTitle;
+	}
+
+	@Override
+	public void changeState(Transaction transaction) {
+		transaction.setCurrentState(TransactionStates.TRANSACTION_STARTED.stateTitle);
+	}
+
+	@Override
+	public boolean isObeyClassRule(String transactionCurrentState) {
+		return true; //There's nothing to obey here.
+	}
+}

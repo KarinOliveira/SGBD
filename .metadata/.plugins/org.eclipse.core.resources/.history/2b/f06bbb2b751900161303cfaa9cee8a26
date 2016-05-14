@@ -1,0 +1,25 @@
+package events;
+
+import enums.TransactionStates;
+import model.Event;
+import model.Transaction;
+
+public class TerminateTransaction  extends Event {
+	
+	public TerminateTransaction(String eventTitle) {
+		this.eventTitle = eventTitle;
+	}
+
+	@Override
+	public void changeState(Transaction transaction) {
+		if (isObeyClassRule(transaction.getCurrentState())) {
+			transaction.setCurrentState(TransactionStates.PROCESS_EFFECTIVE.stateTitle);
+		}
+	}
+
+	@Override
+	public boolean isObeyClassRule(String transactionCurrentState) {
+		return transactionCurrentState;
+	}
+
+}

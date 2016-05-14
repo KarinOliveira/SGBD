@@ -1,0 +1,26 @@
+package events;
+
+import enums.TransactionStates;
+import model.Event;
+import model.Transaction;
+
+public class CommitEvent extends Event {
+
+	public CommitEvent(String eventTitle) {
+		super(eventTitle);
+	}
+
+	@Override
+	public void changeState(Transaction transaction) {
+		if (isObeyClassRule(transaction.getCurrentState())) {
+			transaction.setCurrentState(TransactionStates.EFFECTIVE.stateTitle);
+		}
+	}
+
+	@Override
+	public boolean isObeyClassRule(String transactionCurrentState) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

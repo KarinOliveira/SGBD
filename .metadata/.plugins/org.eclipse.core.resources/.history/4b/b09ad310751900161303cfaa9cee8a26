@@ -1,0 +1,22 @@
+package events;
+
+import model.Event;
+import model.Transaction;
+
+public class TerminateTransaction  extends Event {
+	
+	public TerminateTransaction(String eventTitle) {
+		this.eventTitle = eventTitle;
+	}
+
+	@Override
+	public void changeState(Transaction transaction) {
+		
+	}
+
+	@Override
+	public boolean isObeyClassRule(String transactionCurrentState) {
+		return false;
+	}
+
+}

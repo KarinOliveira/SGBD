@@ -1,0 +1,16 @@
+package enumeration;
+
+public enum TransactionEvents {
+	TRANSACTION_BEGIN("Begin"), 
+	READ("Read"), 
+	WRITE("Write"), 
+	TRANSACTION_TERMINATE("Terminate"),
+	TRANSACTION_ROLLBACK("Rollback"), 
+	TRANSACTION_FINISH("Finish");
+	
+	public String stateTitle;
+	
+	TransactionEvents(String stateTitle) {
+		this.stateTitle = stateTitle;
+	}
+}

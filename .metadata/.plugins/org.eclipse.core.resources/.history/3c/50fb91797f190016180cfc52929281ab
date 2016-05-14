@@ -1,0 +1,34 @@
+package application;
+
+import controller.TransactionManager;
+import enums.TransactionEvents;
+
+public class StartTransactions {
+	
+	public static void main(String[] args) {
+		TransactionManager mTransactionManager = new TransactionManager();
+
+		mTransactionManager.createTransaction("T1");
+		mTransactionManager.showTransactions();
+		
+		mTransactionManager.changeTransactionState("T1", 1);
+		mTransactionManager.showTransactions();
+		
+		mTransactionManager.changeTransactionState("T1", 2);
+		mTransactionManager.showTransactions();
+		
+		mTransactionManager.changeTransactionState("T1", 3);
+		mTransactionManager.showTransactions();
+		
+		mTransactionManager.changeTransactionState("T1", 4);
+		mTransactionManager.showTransactions();
+		
+		mTransactionManager.changeTransactionState("T1", 5);
+		mTransactionManager.showTransactions();
+
+		
+//		for (TransactionEvents transactionsEvents : TransactionEvents.values()) {
+//			System.out.println(transactionsEvents.eventTitle);
+//		}
+	}
+}
